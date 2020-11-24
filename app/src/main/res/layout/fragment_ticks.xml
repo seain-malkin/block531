@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.TicksFragment"
+    android:orientation="horizontal"
+    style="@style/tickFragment">
+
+    <TextView
+        android:id="@+id/tickBlock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/tick_block"
+        android:textAppearance="@style/tickText"
+        style="@style/tickView"/>
+
+    <TextView
+        android:id="@+id/tickWeek"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/tick_week"
+        android:textAppearance="@style/tickText"
+        style="@style/tickView"/>
+
+    <TextView
+        android:id="@+id/tickDay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/tick_day"
+        android:textAppearance="@style/tickText"
+        style="@style/tickView"/>
+
+</LinearLayout>

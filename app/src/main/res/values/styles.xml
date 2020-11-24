@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="actionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
+        <item name="background">?attr/colorPrimary</item>
+    </style>
+    <style name="tickFragment">
+        <item name="android:background">?attr/colorSecondary</item>
+    </style>
+    <style name="tickText" parent="TextAppearance.MaterialComponents.Headline6">
+    
+    </style>
+    <style name="tickView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:padding">@dimen/gutter_half</item>
+    </style>
+</resources>
