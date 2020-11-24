@@ -1,18 +1,10 @@
 package com.example.block531
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.block531.fragments.TicksFragment
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.util.Log
-import java.net.URI
-
-private const val PICK_CONTACT_REQUEST = 1
 
 class PlanActivity : AppCompatActivity() {
 
