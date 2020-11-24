@@ -45,7 +45,7 @@ class BottomMenu : Fragment() {
         if (context is BottomMenuListener) {
             listener = context
         } else {
-            throw RuntimeException("${context} must implement BottomMenuListener")
+            throw RuntimeException("$context must implement BottomMenuListener")
         }
     }
 
