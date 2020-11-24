@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Block531</string>
-    <string name="tick_block">Block %1$d</string>
-    <string name="tick_week">Week %1$d</string>
-    <string name="tick_day">Day %1$d</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
