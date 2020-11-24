@@ -1,16 +1,17 @@
 package com.example.block531.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.block531.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.lang.RuntimeException
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+const val ITEM_PROGRAM = 0
+const val ITEM_REPORTS = 1
 
 /**
  * A simple [Fragment] subclass.
@@ -18,41 +19,73 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class BottomMenu : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    /** @property[listener] A reference to calling activity */
+    private lateinit var listener: BottomMenuListener
+
+    /**
+     * Interface for listener methods to be implemented by calling activity
+     */
+    interface BottomMenuListener {
+        /**
+         * Triggered when the user changes menu items
+         * @param[item] The item number clicked
+         */
+        fun onMenuChange(item: Int)
+    }
+
+    /**
+     * Enforces calling activity implements the listener interface
+     * @see[Fragment.onAttach]
+     */
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        // Reference context as listener if implements interface. Or throw exception
+        if (context is BottomMenuListener) {
+            listener = context
+        } else {
+            throw RuntimeException("${context} must implement BottomMenuListener")
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottom_menu, container, false)
+        val view = inflater.inflate(R.layout.fragment_bottom_menu, container, false)
+
+        // Find the bottom navigation and attach events
+        view.findViewById<BottomNavigationView>(R.id.bottom_nav).run {
+
+            // Inform listener of menu item change
+            setOnNavigationItemSelectedListener {
+                when(it.itemId) {
+                    R.id.program -> {
+                        listener.onMenuChange(ITEM_PROGRAM)
+                        true
+                    }
+                    R.id.reports -> {
+                        listener.onMenuChange(ITEM_REPORTS)
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            // Do nothing if active menu item is re-selected
+            setOnNavigationItemReselectedListener { false }
+        }
+
+        return view
     }
 
     companion object {
         /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
+         * Returns a new instance of this fragment
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment BottomMenu.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String = "", param2: String = "") =
-                BottomMenu().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+        fun newInstance() = BottomMenu()
     }
 }
