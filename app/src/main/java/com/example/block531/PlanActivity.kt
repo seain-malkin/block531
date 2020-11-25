@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.block531.fragments.BottomMenu
+import com.example.block531.fragments.Program
 
 /**
  * Activity that displays the training program and report fragments
@@ -18,6 +19,8 @@ class PlanActivity :
 
     /** @property[bottomMenu] Reference to [BottomMenu] fragment */
     private lateinit var bottomMenu: Fragment
+
+    private lateinit var program: Fragment
 
     /**
      * @see[AppCompatActivity.onCreate]
@@ -40,7 +43,11 @@ class PlanActivity :
             fm.beginTransaction().run {
                 // Bottom Navigation Menu
                 bottomMenu = BottomMenu.newInstance()
-                add(R.id.frame_bottom_menu, bottomMenu)
+                replace(R.id.frame_bottom_menu, bottomMenu)
+
+                // Program fragment
+                program = Program.newInstance()
+                replace(R.id.frame_content, program)
 
                 // Apply changes
                 commit()
